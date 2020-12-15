@@ -46,7 +46,7 @@ class ProductFilter(generics.ListAPIView):
 router = routers.DefaultRouter()
 router.register(r'product', ProductViewSet)
 
-router.register(r'menu/(?P<author_id>\d+)/?$',ProductFilter, base_name="comment_list")
+router.register(r'menu/(?P<author_id>\d+)/?$',ProductFilter)
     
 urlpatterns = [
     path('', include(router.urls)),
