@@ -37,8 +37,8 @@ class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = Product.objects.all()
-        # author_id = self.request.query_params.get('author_id')
-        author_id = self.kwargs.get('author_id', None)
+        author_id = self.request.query_params.get('author_id')
+        # author_id = self.kwargs.get('author_id', None)
         
 
         if author_id is not None:
@@ -48,7 +48,7 @@ class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'product', ProductsViewSet)
 
-router.register(r'menu/<int:author_id>',RestaurantViewset, basename='Restaurant') 
+router.register(r'menu/(?P<author_id>.+)/$',RestaurantViewset, basename='Restaurant') 
     
 urlpatterns = [
     path('', include(router.urls)),
