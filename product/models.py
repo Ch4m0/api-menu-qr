@@ -15,4 +15,4 @@ class Product(models.Model):
     
         return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.foto_producto))
 
-    image_tag.short_description = 'Image' 
+    image_tag.short_description = 'Imagen' 
