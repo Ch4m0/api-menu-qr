@@ -16,9 +16,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers, serializers, viewsets, generics
+from rest_framework import routers, serializers, viewsets, generics, status
+from rest_framework.views import APIView
 from product.models import Product
 from django.conf import settings
+from rest_framework.response import Response
 
 from django.conf.urls.static import static
 
@@ -32,17 +34,27 @@ class ProductsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer    
     
-class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
+class RestaurantViewset(APIView):
     serializer_class = ProductSerializer
 
-    def get(self, author_id):
+    def get(self, request, author_id):
+
     
-        queryset = Product.objects.get(pk = author_id)
+        queryset = Product.objects.get(author_id = author_id)
+        product  = ProductSerializer(queryset)
+        self.data = product.data
+        
+        
+        if queryset is None:
+            self.error = "datas are not found"
+            return Response(self.error, status=status.HTTP_404_NOT_FOUND)
+                
+        else:
+            return Response(self.data, status=status.HTTP_200_OK)
+        pass
+            
         # author_id = self.request.query_params.get('author_id')
 
-        if author_id is not None:
-            queryset = queryset.filter(author__id=author_id)
-        return queryset
         
 router = routers.DefaultRouter()
 router.register(r'product', ProductsViewSet)
