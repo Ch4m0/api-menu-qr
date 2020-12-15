@@ -46,7 +46,7 @@ class ProductFilter(viewsets.ModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'product', ProductViewSet)
 
-router.register(r'menu/(?P<author_id>\d+)/?$',ProductFilter)
+router.register(r'menu/(?P<author_id>\d+)/?$',ProductFilter, basename='Product')
     
 urlpatterns = [
     path('', include(router.urls)),
