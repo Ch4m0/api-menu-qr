@@ -31,9 +31,22 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer    
+    
+class ProductFilter(generics.ListAPIView):
+    serializer_class = ProductSerializer
 
+    def get_queryset(self):
+        """
+        This view should return a list of all the comments for
+        particular author by author portion of the URL.
+        """
+        username = self.kwargs['author_id']
+        return Product.objects.filter(author_id=author_id)
+        
 router = routers.DefaultRouter()
 router.register(r'product', ProductViewSet)
+
+router.register(r'menu/(?P<author_id>\d+)/?$',ProductFilter, base_name="comment_list")
     
 urlpatterns = [
     path('', include(router.urls)),
