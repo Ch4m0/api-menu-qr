@@ -23,7 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
