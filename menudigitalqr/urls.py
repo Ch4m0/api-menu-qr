@@ -32,7 +32,7 @@ class ProductsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer    
     
-class RestaurantList(viewsets.ModelViewSe):
+class RestaurantList(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
