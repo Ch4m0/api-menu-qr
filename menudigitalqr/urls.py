@@ -44,7 +44,7 @@ class RestaurantViewset(viewsets.ModelViewSet):
         return queryset
         
 router = routers.DefaultRouter()
-router.register(r'product', ProductViewSet)
+router.register(r'product', ProductsViewSet)
 
 router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantViewset) 
     
