@@ -46,7 +46,7 @@ class RestaurantList(generics.ListAPIView):
 router = routers.DefaultRouter()
 router.register(r'product', ProductsViewSet)
 
-router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantList.as_view()) 
+router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantList.as_view(), basename='Restaurant') 
     
 urlpatterns = [
     path('', include(router.urls)),
