@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers, serializers, viewsets, generics
 from product.models import Product
 from django.conf import settings
 
