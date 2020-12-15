@@ -9,4 +9,9 @@ class Product(models.Model):
     precio = models.TextField(null=True)
     foto_producto = models.ImageField(null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-       
+    
+    def image_tag(self):
+    
+        return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.foto_producto))
+
+    image_tag.short_description = 'Image' 

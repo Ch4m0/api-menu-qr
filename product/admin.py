@@ -11,7 +11,7 @@ class YourModelAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     # you should prevent author field to be manipulated 
     readonly_fields = ['author']
-    list_display = ['foto_producto', 'nombre', 'descripcion', 'precio']
+    list_display = ['image_tag', 'nombre', 'descripcion', 'precio']
     
 
     def get_queryset(self, request):
