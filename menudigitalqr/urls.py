@@ -38,6 +38,7 @@ class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         queryset = Product.objects.all()
         author_id = self.request.query_params.get('author_id')
+        print(author_id)
 
         if author_id is not None:
             queryset = queryset.filter(author__id=author_id)
