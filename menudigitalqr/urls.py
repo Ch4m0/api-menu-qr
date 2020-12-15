@@ -32,7 +32,7 @@ class ProductsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer    
     
-class RestaurantList(generics.ListAPIView):
+class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
@@ -46,7 +46,7 @@ class RestaurantList(generics.ListAPIView):
 router = routers.DefaultRouter()
 router.register(r'product', ProductsViewSet)
 
-router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantList.as_view(), basename='Restaurant') 
+router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantViewset, basename='Restaurant') 
     
 urlpatterns = [
     path('', include(router.urls)),
