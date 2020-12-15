@@ -46,7 +46,7 @@ class RestaurantViewset(viewsets.ModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'product', ProductsViewSet)
 
-router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantViewset) 
+router.register(r'menu/(?P<author_id>\d+)/?$',RestaurantViewset, basename='Restaurant') 
     
 urlpatterns = [
     path('', include(router.urls)),
