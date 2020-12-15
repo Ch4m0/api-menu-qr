@@ -40,7 +40,7 @@ class RestaurantViewset(APIView):
     def get(self, request, author_id):
 
     
-        queryset = Product.objects.get(author_id = author_id)
+        queryset = Product.objects.filter(author_id = author_id)
         product  = ProductSerializer(queryset)
         self.data = product.data
         
