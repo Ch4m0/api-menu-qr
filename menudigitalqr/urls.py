@@ -35,10 +35,10 @@ class ProductsViewSet(viewsets.ReadOnlyModelViewSet):
 class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
 
-    def get_queryset(self):
-        queryset = Product.objects.all()
-        author_id = self.request.query_params.get('author_id')
-        
+    def get(self, author_id):
+    
+        queryset = Product.objects.get(pk = author_id)
+        # author_id = self.request.query_params.get('author_id')
 
         if author_id is not None:
             queryset = queryset.filter(author__id=author_id)
@@ -47,11 +47,11 @@ class RestaurantViewset(viewsets.ReadOnlyModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'product', ProductsViewSet)
 
-router.register(r'menu/(?P<author_id>.+)/$',RestaurantViewset, basename='Restaurant') 
     
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path(r'menu/<int:author_id>', RestaurantViewset.as_view(), name='Restaurant') 
 ]
 
 if settings.DEBUG:
