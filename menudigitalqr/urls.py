@@ -1,7 +1,7 @@
-"""menudigitalqr URL Configuration
+"""menuWeb URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -13,31 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers, serializers, viewsets
-from product.models import Product
+from django.urls import path
 from django.conf import settings
-
 from django.conf.urls.static import static
 
+from product import views
 
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Product
-        fields = '__all__'
-
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer    
-
-router = routers.DefaultRouter()
-router.register(r'product', ProductViewSet)
-    
 urlpatterns = [
-    path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('menu/<int:author_id>', views.CategoryViewSet.as_view(), name='category') 
+   
 ]
 
 if settings.DEBUG:
