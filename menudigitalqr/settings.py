@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL=True
 # Application definition
+import dj_database_url
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
