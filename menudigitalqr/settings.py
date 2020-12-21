@@ -81,25 +81,25 @@ WSGI_APPLICATION = 'menudigitalqr.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-import dj_database_url
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7o1arsdnh2afj',
-        'USER': 'wpwaliiztkkkts',
-        'PASSWORD': '7f481a32ad9cd2f9d136d2786b5d6732e03985ab1393612fc5a84c033f9d5846',
-        'HOST': 'ec2-54-196-89-124.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# import dj_database_url
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd7o1arsdnh2afj',
+#         'USER': 'wpwaliiztkkkts',
+#         'PASSWORD': '7f481a32ad9cd2f9d136d2786b5d6732e03985ab1393612fc5a84c033f9d5846',
+#         'HOST': 'ec2-54-196-89-124.compute-1.amazonaws.com',
+#         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # DATABASES = {
